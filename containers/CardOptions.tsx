@@ -19,7 +19,7 @@ export const CardOptions = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
 
-            <View style={{ flexDirection: 'row', marginTop: 20 }}>
+            <View style={{ flexDirection: 'row', marginTop: '10%' }}>
                 <Image
                     style={{ width: 32, height: 32 }}
                     source={require('../assets/images/insight.png')}
