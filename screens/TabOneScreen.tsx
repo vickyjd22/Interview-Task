@@ -18,17 +18,22 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
     sheetRef.current.snapTo(0);
   });
 
+  const [isHidden, setIsHidden] = useState(false);
+  const hideCardNumber = () => {
+    setIsHidden(true);
+  }
+
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   const renderContent = () => (
     <View style={{ flex: 1 }}>
-      <Pressable onPress={()=> console.log('Tapped')} style={{ position: 'absolute', right: 26, flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', width: 151, height: 40, borderRadius: 5 }}>
+      <Pressable onPress={() => hideCardNumber()} style={{ position: 'absolute', right: 26, flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', width: 151, height: 40, borderRadius: 5 }}>
         <Image
           style={{ width: 16, height: 16, position: 'relative', right: -20, top: -5 }}
           source={require('../assets/images/hide.png')}
         />
-        <Text style={{ position: 'relative', right: -25, top: -5, color: '#01D167', fontWeight: '900', fontSize: 12, alignSelf: 'center', width: 151 }}>Hide card number</Text>
+        <Text style={styles.hidecard}>Hide card number</Text>
       </Pressable>
 
       <View
@@ -39,7 +44,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
           opacity: 1,
           backgroundColor: 'transparent',
         }}>
-        <DebitCard navigation={undefined} />
+        <DebitCard hide={isHidden} navigation={undefined} />
       </View>
       <View
         style={{
@@ -93,5 +98,8 @@ const styles = StyleSheet.create({
     color: '#25345F',
     fontWeight: 'normal',
     fontSize: 13,
+  },
+  hidecard: {
+    position: 'relative', right: -25, top: -5, color: '#01D167', fontWeight: '900', fontSize: 12, alignSelf: 'center', width: 151
   }
 });

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -10,7 +10,10 @@ import {
     Image
 } from 'react-native';
 
-export const DebitCard = ({ navigation }) => {
+export const DebitCard = ({ hide, navigation }) => {
+    useEffect(() => {
+        console.log("is hidden", hide);
+    }, [hide]);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -26,7 +29,11 @@ export const DebitCard = ({ navigation }) => {
                 Mark Henry
             </Text>
 
-            <Text style={styles.subtitle}>5647   3411   2413   2020</Text>
+            {hide == true ?
+                <Text style={styles.subtitle}>XXXX   XXXX   XXXX   XXXX</Text>
+                :
+                <Text style={styles.subtitle}>5647   3411   2413   2020</Text>
+            }
 
             <View style={{ flexDirection: 'row' }}>
                 <View style={{ flexDirection: 'row', backgroundColor: '#01D167', height: 22, borderRadius: 5, marginLeft: '5%' }}>
